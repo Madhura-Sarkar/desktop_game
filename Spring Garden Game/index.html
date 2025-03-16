@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Garden</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <h2>Spring Garden</h2>
+        <div class="game"></div>
+        <button class="reset">Reset Game</button>
+    </div>
+
+    <div class="music-controls">
+        <select id="song-select" class="song-select">
+            <option value="song1.mp3">1</option>
+            <option value="song2.mp3">2</option>
+            <option value="song3.mp3">3</option>
+            <option value="song4.mp3">4</option>
+            <option value="song5.mp3">5</option>
+        </select>
+        <button id="speaker-icon" class="speaker-icon">
+            <svg class="nes-pointer" xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24"
+                fill="#fff">
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                    d="M11.56 2H9.56V4H7.56V6H5.56V8H3.56H1.56V10V14V16H3.56H5.56V18H7.56V20H9.56V22H11.56V2ZM7.56 18V16H5.56V14H3.56V10H5.56V8H7.56V6H9.56V18H7.56ZM13.56 10H15.56V14H13.56V10ZM21.56 4H19.56V2H13.56V4H19.56V6H21.56V18H19.56V20H13.56V22H19.56V20H21.56V18H23.56V6H21.56V4ZM19.56 8H17.56V6H13.56V8H17.56V16H13.56V18H17.56V16H19.56V8Z">
+                </path>
+            </svg>
+        </button>
+    </div>
+
+    <div id="tooltip" class="tooltip"></div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content glassmorphism">
+            <span class="close">&times;</span>
+            <h3 id="plant-name"></h3>
+            <p id="plant-description"></p>
+        </div>
+    </div>
+
+    <div id="win-modal" class="win-modal">
+        <h3>You Win!</h3>
+        <p>Congratulations on matching all the flowers!</p>
+    </div>
+
+    <audio id="audio" loop>
+        <source src="song1.mp3" type="audio/mp3">
+    </audio>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Pixelify Sans';
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('https://img.freepik.com/premium-photo/pixel-art-fantasy-garden-magic-forest-mystical-garden-background-retro-style-8-bit-game-ai_985124-1128.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: 'Pixelify Sans', sans-serif;
+    margin: 0;
+}
+
+.container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 15px;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.game {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    width: fit-content;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.item {
+    width: 80px;
+    height: 80px;
+    background: url('https://img.freepik.com/free-photo/pink-painted-rough-wooden-surface_23-2148413332.jpg?ga=GA1.1.109945997.1700161604&semt=ais_hybrid');
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+h2 {
+    font-size: 2rem;
+    background: url('https://pics.craiyon.com/2023-07-22/c406fb9e4b754ed08d8a0bad6b6d2281.webp');
+    background-size: cover;
+    border-radius: 5px;
+    padding: 8px;
+    color: #fff;
+    border-bottom: 5px solid black;
+    border-right: 5px solid black;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.boxOpen img,
+.boxMatch img {
+    display: block;
+}
+
+.tooltip {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.3);
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    display: none;
+    backdrop-filter: blur(5px);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 30%;
+    left: 70%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    padding: 15px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 253, 253, 0.526);
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.modal-content {
+    position: relative;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.modal .close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.reset {
+    margin: 15px auto;
+    padding: 12px 30px;
+    background: url('image.png') no-repeat center center;
+    background-size: cover;
+    border: none;
+    color: #230808;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    height: 80px;
+    text-shadow: 2px 2px 4px white;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+@media (max-width: 480px) {
+    .game {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+    }
+
+    .item {
+        width: 60px;
+        height: 60px;
+    }
+
+    .reset {
+        width: 120px;
+        height: 50px;
+        font-size: 1em;
+    }
+}
+
+.win-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(237, 120, 255, 0.8);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out;
+    color: white;
+}
+
+.win-modal h3 {
+    font-size: 2rem;
+    color: white;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.5);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.music-controls {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 10;
+}
+
+.song-select {
+    font-size: 14px;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.183);
+    color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    font-family: 'Pixelify Sans', sans-serif;
+    cursor: pointer;
+    transition: background 0.3s, border 0.3s;
+}
+
+.song-select:hover {
+    background: #f75eff;
+    border: 2px solid #393939;
+}
+
+.speaker-icon {
+    width: 30px;
+    height: 30px;
+    background: none;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+}
+
+.speaker-icon.muted {
+    background: url('https://www.iconfinder.com/icons/2515190/download/png/256') no-repeat center center;
+    background-size: contain;
+}
