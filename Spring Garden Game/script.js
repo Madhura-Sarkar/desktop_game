@@ -74,32 +74,17 @@ shuffledPlants.forEach(plant => {
     img.src = plant.img;
     box.appendChild(img);
 
-    box.addEventListener("click", function (event) {
+    box.addEventListener("click", function () {
         // Tooltip positioning logic
         const boxRect = box.getBoundingClientRect();
         const gameRect = gameBoard.getBoundingClientRect();
 
-        // Add a small offset for better alignment
-        const tooltipOffset = 10;  // Adjust this value as needed
+        const tooltipOffset = 10; // Space between card and tooltip
+        const tooltipWidth = tooltip.offsetWidth;
 
-        // Positioning logic for the tooltip relative to the card
-        if (boxRect.left + boxRect.width / 2 < gameRect.left + gameRect.width / 2) {
-            tooltip.style.left = `${boxRect.left - tooltip.offsetWidth - tooltipOffset}px`; // Left of the card
-        } else {
-            tooltip.style.left = `${boxRect.left + boxRect.width + tooltipOffset}px`; // Right of the card
-        }
-
-        // Ensure the tooltip does not go off-screen on the left side
-        if (parseInt(tooltip.style.left) < 0) {
-            tooltip.style.left = `${boxRect.left + boxRect.width + tooltipOffset}px`; // Fallback to the right
-        }
-
-        // Position the tooltip above or below the card based on available space
-        if (boxRect.top + boxRect.height + tooltip.offsetHeight + tooltipOffset < window.innerHeight) {
-            tooltip.style.top = `${boxRect.top + boxRect.height + tooltipOffset}px`; // Below the card
-        } else {
-            tooltip.style.top = `${boxRect.top - tooltip.offsetHeight - tooltipOffset}px`; // Above the card
-        }
+        // Position the tooltip directly below the card, and center it relative to the card
+        tooltip.style.left = `${boxRect.left + (boxRect.width / 2) - (tooltipWidth / 2)}px`;
+        tooltip.style.top = `${boxRect.bottom + tooltipOffset}px`;
 
         // Show tooltip with description
         tooltip.style.display = "block";
@@ -114,6 +99,10 @@ shuffledPlants.forEach(plant => {
             let firstCard = openedCards[0];
             let secondCard = openedCards[1];
 
+            // Clear the previous description immediately before checking matches
+            plantDescription.innerHTML = '';
+            clearInterval(typingInterval);
+
             if (firstCard.dataset.name === secondCard.dataset.name) {
                 setTimeout(() => {
                     firstCard.classList.add("boxMatch");
@@ -127,8 +116,9 @@ shuffledPlants.forEach(plant => {
                     }
 
                     plantName.textContent = plant.name;
-                    plantDescription.innerHTML = '';
-                    typeWriterEffect(plant.longDescription, plantDescription); // Use long description for modal
+
+                    // Start typing the new description
+                    typeWriterEffect(plant.longDescription, plantDescription);
 
                     modal.style.display = "block";
                     modal.style.opacity = "0";
@@ -151,8 +141,11 @@ shuffledPlants.forEach(plant => {
         }
     });
 
+
     gameBoard.appendChild(box);
 });
+
+let typingInterval;
 
 function typeWriterEffect(text, element) {
     let i = 0;
@@ -162,11 +155,10 @@ function typeWriterEffect(text, element) {
         if (i < text.length) {
             element.innerHTML += text.charAt(i);
             i++;
-            setTimeout(type, speed);
         }
     }
 
-    type();
+    typingInterval = setInterval(type, speed);
 }
 
 closeModal.addEventListener("click", () => {
