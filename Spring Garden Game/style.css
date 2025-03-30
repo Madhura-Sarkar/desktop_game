@@ -105,6 +105,20 @@ h2 {
     text-align: center;
 }
 
+@media (max-width: 768px) {
+    .modal {
+        position: absolute;
+        top: 50px;
+        /* Position it above the container */
+        left: 5%;
+        transform: translateX(-50%);
+        width: 90%;
+        /* Make it take up most of the screen width */
+        max-width: 500px;
+        /* Limit its maximum size */
+    }
+}
+
 .modal-content {
     position: relative;
     padding: 15px;
